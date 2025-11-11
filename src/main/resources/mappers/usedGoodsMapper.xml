@@ -8,7 +8,16 @@
 
     <select id="selectUsedGoodsList"
     resultType="com.sourjelly.springexample.database.domain.UsedGoods">
-        SELECT * FROM `used_goods`
+        SELECT
+         `id`
+        , `seller_id`
+        , `title`
+        , `price`
+        , `description`
+        , `image`
+        , `created_at`
+        , `updated_at`
+        FROM `used_goods`
     </select>
 
 </mapper>

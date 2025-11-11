@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-// Mybatis Framework
+// Mybatis Framework 사용
 @Mapper
 public interface UsedGoodsRepository {
 
