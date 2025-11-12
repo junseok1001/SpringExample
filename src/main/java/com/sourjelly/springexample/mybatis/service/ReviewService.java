@@ -5,6 +5,7 @@ import com.sourjelly.springexample.mybatis.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class ReviewService {
 
@@ -18,4 +19,23 @@ public class ReviewService {
         return review;
 
     }
+
+     public int createReview(
+            int storeId
+            , String menu
+            , String userName
+            , double point
+            , String review){
+
+        int count = reviewRepository.insertReview(storeId, menu, userName, point, review);
+
+        return count;
+     }
+
+     public int  createReviewByObject(Review review){
+
+        int count = reviewRepository.insertReviewByObject(review);
+
+        return count;
+     }
 }
