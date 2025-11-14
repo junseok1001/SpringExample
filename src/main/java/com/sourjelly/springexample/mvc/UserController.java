@@ -36,9 +36,18 @@ public class UserController {
             ,@RequestParam("email") String email
             ,@RequestParam(value = "introduce", required=false) String introduce){
 
-        int count = userService.createUser(name, birthday, email, introduce);
+//        int count = userService.createUser(name, birthday, email, introduce);
 
-        return "입력 완료 : " +  count;
+        User user = new User();
+
+        user.setName(name);
+        user.setYyyymmdd(birthday);
+        user.setEmail(email);
+        user.setIntroduce(introduce);
+
+        int count = userService.createUserByObject(user);
+
+        return "입력 완료 : " +  count + "저장된 index" + user.getId();
     }
 
     @GetMapping("/form")
