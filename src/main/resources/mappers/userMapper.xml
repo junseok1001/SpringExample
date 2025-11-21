@@ -22,6 +22,17 @@
         LIMIT 1
     </select>
 
+    <select id="countUserByEmail" parameterType="string"
+    resultType="int">
+        SELECT
+            count(*)
+        FROM
+            `new_user`
+        WHERE
+            `email` = #{email}
+    </select>
+
+
     <insert id="insertUser" parameterType="map">
         INSERT INTO
             `new_user`
@@ -59,5 +70,7 @@
             , #{introduce}
         )
     </insert>
+
+
 
 </mapper>
