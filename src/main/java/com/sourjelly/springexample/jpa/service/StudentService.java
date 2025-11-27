@@ -4,7 +4,10 @@ import com.sourjelly.springexample.jpa.domain.Student;
 import com.sourjelly.springexample.jpa.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,6 +15,8 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+
 
     public Student createStudent(
             String name
@@ -79,4 +84,7 @@ public class StudentService {
         }
 
     }
+
+
+
 }

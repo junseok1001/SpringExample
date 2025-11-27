@@ -1,15 +1,15 @@
 package com.sourjelly.springexample.jpa;
 
 import com.sourjelly.springexample.jpa.domain.Student;
+import com.sourjelly.springexample.jpa.repository.StudentRepository;
 import com.sourjelly.springexample.jpa.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/jpa/student")
 @Controller
@@ -17,6 +17,12 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    // !!!!!!!경고!!!!!!!
+    // 절대 Controller 에서 Repository 객체를 활요하지 않는다!
+    // 다만, 코드 작성 편의를 위해서 임시로 활용
+    @Autowired
+    private StudentRepository studentRepository;
 
     @ResponseBody
     @GetMapping("/lombok")
@@ -69,4 +75,39 @@ public class StudentController {
 
         return "삭제 완료";
     }
+
+    @ResponseBody
+    @GetMapping("/find")
+    public List<Student> findStudent(){
+
+        List<Student> studentList = null;
+
+        // 모든 행 조회
+//       studentList = studentRepository.findAll();
+
+        // 이름으로 행조회
+//        studentList =  studentRepository.findByName(name);
+
+        // id 기반으로 내림차순 정렬
+        // ORDER BY `id`DESC
+//        studentList = studentRepository.findByOrderByIdDesc();
+
+        // 이름이 김인규 이고, 2개까지 보이게 해주세요
+//        studentList = studentRepository.findTop2ByNameOrderByIdDesc("김인규");
+
+        List<String> nameList = new ArrayList<>();
+        nameList.add("김인규");
+        nameList.add("유재석");
+
+//        studentList = studentRepository.findByNameIn(nameList);
+
+        studentList = studentRepository.selectByDreamJob("개발자");
+
+
+
+        return studentList;
+
+    }
+
+
 }
